@@ -22,7 +22,7 @@ def callback(request):
     oauth2_user_handler = get_handler()
 
     access_token = oauth2_user_handler.fetch_token(
-        request.path
+        request.build_absolute_uri()
     )
 
     Access_token(**access_token).save()
