@@ -2,6 +2,7 @@ from django.contrib import admin
 from .views import get_handler
 from .models import Access_token
 from django.http import HttpResponseRedirect
+from django.core.cache import cache
 
 
 def refresh_token():
@@ -15,6 +16,7 @@ def refresh_token():
 
 def auth_flow(modeladmin, request, queryset):
     oauth2_user_handler = get_handler()
+    cache.set("oauth2_user_handler", oauth2_user_handler)
     return HttpResponseRedirect(oauth2_user_handler.get_authorization_url())
 auth_flow.short_description="Authenticate your app"
 

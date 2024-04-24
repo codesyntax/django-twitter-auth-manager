@@ -3,6 +3,7 @@ from django.conf import settings
 from .models import Access_token
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.core.cache import cache
 
 TWITTER_CLIENT_ID = getattr(settings, 'TWITTER_CLIENT_ID', None)
 TWITTER_CLIENT_SECRET = getattr(settings, 'TWITTER_CLIENT_SECRET', None)
@@ -19,11 +20,12 @@ def get_handler():
     )
 
 def callback(request):
-    oauth2_user_handler = get_handler()
+    oauth2_user_handler = cache.get("oauth2_user_handler")
 
-    access_token = oauth2_user_handler.fetch_token(
-        request.build_absolute_uri()
-    )
+    if oauth2_user_handler:
+        access_token = oauth2_user_handler.fetch_token(
+            request.build_absolute_uri()
+        )
+        Access_token(**access_token).save()
 
-    Access_token(**access_token).save()
     return HttpResponseRedirect(reverse("admin:django_twitter_auth_manager_changelist"))
