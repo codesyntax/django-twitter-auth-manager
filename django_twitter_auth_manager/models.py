@@ -10,7 +10,8 @@ class Access_token(models.Model):
     expires_at = models.FloatField()
 
     def get_expire_date(self):
-        return time.qmtime(self.expires_at)
+        return time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(self.expires_at))
+    get_expire_date.short_description = "Expire date"
 
 
     class Meta:

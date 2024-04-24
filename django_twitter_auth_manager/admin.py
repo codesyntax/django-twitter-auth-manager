@@ -23,7 +23,7 @@ auth_flow.short_description="Authenticate your app"
 
 
 class Access_tokenAdmin(admin.ModelAdmin):
-    list_display = ('token_type', 'scope', 'expires_at')
+    list_display = ('token_type', 'scope', 'get_expire_date')
     actions = [auth_flow]
 
 admin.site.register(Access_token, Access_tokenAdmin)
