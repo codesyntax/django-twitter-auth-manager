@@ -2,6 +2,7 @@ from django.db import models
 import time
 import pytz
 from datetime import datetime
+from django.utils.timezone import make_aware
 
 
 class Access_token(models.Model):
@@ -13,7 +14,7 @@ class Access_token(models.Model):
     expires_at = models.FloatField()
 
     def get_expire_date(self):
-        return datetime.fromtimestamp(time.mktime(time.localtime(self.expires_at)))
+        return make_aware(datetime.fromtimestamp(time.mktime(time.localtime(self.expires_at))), pytz.timezone('Europe/Madrid'))
     get_expire_date.short_description = "Expire date"
 
 
