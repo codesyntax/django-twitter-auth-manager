@@ -16,8 +16,9 @@ def refresh_token():
 
 def auth_flow(modeladmin, request, queryset):
     oauth2_user_handler = get_handler()
-    cache.set("oauth2_user_handler", oauth2_user_handler)
-    return HttpResponseRedirect(oauth2_user_handler.get_authorization_url())
+    url = oauth2_user_handler.get_authorization_url()
+    cache.set("_client", oauth2_user_handler._client.__dict__)
+    return HttpResponseRedirect(url)
 auth_flow.short_description="Authenticate your app"
 
 

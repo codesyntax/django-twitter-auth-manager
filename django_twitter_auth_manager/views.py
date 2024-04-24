@@ -20,12 +20,14 @@ def get_handler():
     )
 
 def callback(request):
-    oauth2_user_handler = cache.get("oauth2_user_handler")
+    _client = cache.get("_client")
 
-    if oauth2_user_handler:
+    if _client:
+        oauth2_user_handler = get_handler()
+        oauth2_user_handler._client.__dict__ = _client
         access_token = oauth2_user_handler.fetch_token(
             request.build_absolute_uri()
         )
         Access_token(**access_token).save()
 
-    return HttpResponseRedirect(reverse("admin:django_twitter_auth_manager_changelist"))
+    return HttpResponseRedirect(reverse("admin:index"))
