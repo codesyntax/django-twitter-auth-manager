@@ -19,6 +19,15 @@ def get_handler():
         client_secret=TWITTER_CLIENT_SECRET
     )
 
+def refresh_token():
+    oauth2_user_handler = get_handler()
+    access_token = Access_token.objects.last()
+    new_access_token = oauth2_user_handler.refresh_token('https://api.twitter.com/2/oauth2/token', refresh_token=access_token.refresh_token)
+
+    token_obj = Access_token(**new_access_token)
+    token_obj.save()
+    return token_obj
+
 def callback(request):
     _client = cache.get("_client")
 
