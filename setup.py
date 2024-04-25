@@ -27,6 +27,7 @@ setup(name='django_twitter_auth_manager',
       description="""Manage Twitter OAuth 2.0 Authorization Code Flow with PKCE (User Context) authentication by an Django app and store necessary token and refresh token for future uses.""",
       long_description=open("README.md").read() + "\n" +
                        open("CHANGELOG.txt").read(),
+      long_description_content_type='text/markdown',
       classifiers=[
         "Programming Language :: Python :: 3",
         "Framework :: Django :: 1.11",
