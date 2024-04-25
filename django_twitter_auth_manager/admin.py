@@ -19,7 +19,8 @@ auth_flow.short_description="Authenticate your app"
 
 
 class Access_tokenAdmin(admin.ModelAdmin):
-    list_display = ('get_expire_date', 'token_type','scope')
+    list_display = ('is_valid','get_expire_date', 'token_type','scope')
+    list_display_links = ('is_valid', 'get_expire_date')
     actions = [auth_flow, new_token]
 
 admin.site.register(Access_token, Access_tokenAdmin)
