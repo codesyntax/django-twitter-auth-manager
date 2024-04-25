@@ -20,7 +20,7 @@ def get_requirements(source):
         required = [str(ir.requirement) for ir in install_reqs]
     return list(required)
 
-version = '1.0'
+version = '1.1.dev0'
 
 setup(name='django_twitter_auth_manager',
       version=version,
