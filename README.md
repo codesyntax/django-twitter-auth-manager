@@ -1,5 +1,5 @@
 ![PyPI - Version](https://img.shields.io/pypi/v/django-twitter-auth-manager?color=blue)
-![GitHub License](https://img.shields.io/github/license/codesyntax/django-twitter-auth-manager)
+![GitHub License](https://img.shields.io/github/license/codesyntax/django-twitter-auth-manager%20)
 
 # django-twitter-auth-manager
 Manage Twitter OAuth 2.0 Authorization Code Flow with PKCE (User Context) authentication by an Django app and store necessary token and refresh token for future uses.
