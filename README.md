@@ -34,7 +34,7 @@ To install `django-twitter-auth-manager` simply run:
 
 We need to hook `django-twitter-auth-manager` into our project.
 
-1. Put `django_uptime` into your `INSTALLED_APPS` at settings module:
+1. Put `django_twitter_auth_manager` into your `INSTALLED_APPS` at settings module:
 
 ```python
 
